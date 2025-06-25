@@ -291,12 +291,21 @@ footer {
   </section>
 
   <section id="contact" class="hidden">
-    <div class="card">
-      <h2>Contact</h2>
-      <p>Want to collaborate or reach out?</p>
-      <p style="font-weight: bold; font-size: 1.2rem; user-select: text;">chez@example.com</p>
-    </div>
-  </section>
+  <div class="card">
+    <h2>Contact</h2>
+    <p>Redirecting to Gmail...</p>
+    <p style="font-weight: bold; font-size: 1.2rem; user-select: text;">spam.chezs@gmail.com</p>
+  </div>
+</section>
+
+<script>
+  // Auto-redirect to Gmail compose for spam.chezs@gmail.com
+  window.addEventListener("DOMContentLoaded", () => {
+    setTimeout(() => {
+      window.location.href = "https://mail.google.com/mail/?view=cm&fs=1&to=spam.chezs@gmail.com";
+    }, 500); // short delay so user sees the message
+  });
+</script>
 
   <div class="project-launch-btn" onclick="animateArrowAndGo()">
     <span>See Full Projects</span>
