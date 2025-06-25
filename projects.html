@@ -19,8 +19,7 @@
 
     #particle-canvas {
       position: fixed;
-      top: 0;
-      left: 0;
+      top: 0; left: 0;
       width: 100vw;
       height: 100vh;
       z-index: 0;
@@ -62,6 +61,7 @@
       text-decoration: none;
       font-weight: 500;
       transition: 0.3s ease;
+      font-size: 1rem;
     }
 
     nav a:hover {
@@ -80,10 +80,13 @@
       border-radius: 15px;
       padding: 2rem;
       margin: 2rem 0;
-      box-shadow: 0 0 20px rgba(159, 95, 255, 0.1);
+      box-shadow: 0 10px 20px rgba(159, 95, 255, 0.15);
       backdrop-filter: saturate(180%) blur(10px);
       color: white;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      transform-style: preserve-3d;
+      will-change: transform;
+      perspective: 1000px;
     }
 
     .card:hover {
@@ -93,23 +96,25 @@
 
     .project-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 2rem;
+      margin-top: 1.5rem;
     }
 
     .project-item {
       background-color: rgba(21, 21, 21, 0.85);
       padding: 1.5rem;
-      border-radius: 12px;
+      border-radius: 15px;
       text-align: center;
       color: white;
+      box-shadow: 0 0 10px transparent;
       transition: box-shadow 0.3s ease, transform 0.2s ease;
       backdrop-filter: saturate(180%) blur(10px);
+      cursor: pointer;
+      user-select: none;
       transform-style: preserve-3d;
       will-change: transform;
       perspective: 1000px;
-      cursor: pointer;
-      user-select: none;
     }
 
     .project-item:hover {
@@ -119,7 +124,7 @@
 
     .project-item img {
       max-width: 100%;
-      border-radius: 10px;
+      border-radius: 12px;
       margin-bottom: 1rem;
       user-select: none;
       pointer-events: none;
@@ -129,6 +134,7 @@
       text-align: center;
       padding: 2rem;
       background: rgba(17, 17, 17, 0.85);
+      font-size: 0.9rem;
       color: #aaa;
       backdrop-filter: saturate(180%) blur(10px);
       position: relative;
@@ -179,7 +185,7 @@
             Owner of Byter Exploits, a solo project with some help, focused on Roblox exploits (scripts).
           </p>
         </div>
-        <!-- Add more project items here -->
+        <!-- Add more projects here -->
       </div>
     </div>
   </section>
