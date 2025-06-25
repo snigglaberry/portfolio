@@ -10,158 +10,152 @@
   />
   <style>
     :root {
-      --main-color: #9f5fff;
-      --bg-color: #0a0a0a;
-      --text-color: #ffffff;
-      --accent-color: #1f1f1f;
-      --glow-color: #c299ff;
-    }
+  --main-color: #ffffff;
+  --bg-color: #121212;
+  --text-color: #ffffff;
+  --accent-color: #1a1a1a;
+  --glow-color: #555555;
+}
 
-    #particle-canvas {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100vw;
-      height: 100vh;
-      z-index: 0;
-      background: linear-gradient(135deg, #2a004f, #4b0082);
-    }
+#particle-canvas {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  background: #121212;
+}
 
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      scroll-behavior: smooth;
-      color: var(--text-color);
-      background: transparent;
-      position: relative;
-      z-index: 1;
-      overflow-x: hidden;
-    }
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  scroll-behavior: smooth;
+  color: var(--text-color);
+  background: transparent;
+  position: relative;
+  z-index: 1;
+  overflow-x: hidden;
+}
 
-    nav {
-      background: rgba(17, 17, 17, 0.85);
-      padding: 1rem 10%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      backdrop-filter: saturate(180%) blur(10px);
-    }
+nav {
+  background: rgba(20, 20, 20, 0.95);
+  padding: 1rem 10%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  backdrop-filter: blur(10px);
+}
 
-    nav h1 {
-      font-size: 1.5rem;
-      color: var(--main-color);
-      margin: 0;
-    }
+nav h1 {
+  font-size: 1.5rem;
+  color: var(--main-color);
+  margin: 0;
+}
 
-    nav a {
-      color: white;
-      text-decoration: none;
-      font-weight: 500;
-      transition: 0.3s ease;
-      font-size: 1rem;
-    }
+nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  transition: 0.3s ease;
+  font-size: 1rem;
+}
 
-    nav a:hover {
-      color: var(--main-color);
-      text-shadow: 0 0 10px var(--main-color);
-    }
+nav a:hover {
+  color: var(--glow-color);
+}
 
-    section {
-      padding: 3rem 10%;
-      position: relative;
-      z-index: 1;
-    }
+section {
+  padding: 3rem 10%;
+  position: relative;
+  z-index: 1;
+}
 
-    .card {
-      background-color: rgba(72, 0, 130, 0.85); /* dark violet */
-      border-radius: 15px;
-      padding: 2rem;
-      margin: 2rem 0;
-      box-shadow: 0 10px 25px rgba(159, 95, 255, 0.3);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-      transform-style: preserve-3d;
-      will-change: transform;
-      perspective: 1000px;
-      color: white;
-      backdrop-filter: saturate(180%) blur(10px);
-    }
+.card {
+  background-color: #1a1a1a;
+  border-radius: 15px;
+  padding: 2rem;
+  margin: 2rem 0;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  color: white;
+  backdrop-filter: blur(6px);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transform-style: preserve-3d;
+}
 
-    .card:hover {
-      transform: scale(1.02);
-      box-shadow: 0 0 35px var(--glow-color);
-    }
+.card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 0 35px var(--glow-color);
+}
 
-    .project-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2rem;
-      margin-top: 1.5rem;
-    }
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 1.5rem;
+}
 
-    .project-item {
-      background-color: rgba(85, 26, 139, 0.9); /* slightly brighter purple */
-      padding: 1.5rem;
-      border-radius: 15px;
-      text-align: center;
-      color: white;
-      box-shadow: 0 0 10px transparent;
-      transition: box-shadow 0.3s ease, transform 0.2s ease;
-      backdrop-filter: saturate(180%) blur(10px);
-      cursor: pointer;
-      user-select: none;
-      transform-style: preserve-3d;
-      will-change: transform;
-      perspective: 1000px;
-    }
+.project-item {
+  background-color: #222;
+  padding: 1.5rem;
+  border-radius: 15px;
+  text-align: center;
+  color: white;
+  box-shadow: 0 0 10px transparent;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  backdrop-filter: blur(6px);
+  cursor: pointer;
+  user-select: none;
+}
 
-    .project-item:hover {
-      box-shadow: 0 0 20px var(--glow-color);
-      transform: scale(1.03);
-    }
+.project-item:hover {
+  box-shadow: 0 0 20px var(--glow-color);
+  transform: scale(1.03);
+}
 
-    .project-item img {
-      max-width: 100%;
-      border-radius: 12px;
-      margin-bottom: 1rem;
-      user-select: none;
-      pointer-events: none;
-    }
+.project-item img {
+  max-width: 100%;
+  border-radius: 12px;
+  margin-bottom: 1rem;
+  user-select: none;
+  pointer-events: none;
+}
 
-    .btn {
-      display: inline-block;
-      margin-top: 1rem;
-      padding: 0.8rem 2rem;
-      border: none;
-      border-radius: 30px;
-      background: var(--main-color);
-      color: white;
-      font-weight: bold;
-      text-decoration: none;
-      transition: 0.3s ease;
-      box-shadow: 0 0 10px var(--glow-color);
-      cursor: pointer;
-    }
+.btn {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.8rem 2rem;
+  border: none;
+  border-radius: 30px;
+  background: var(--main-color);
+  color: black;
+  font-weight: bold;
+  text-decoration: none;
+  transition: 0.3s ease;
+  box-shadow: 0 0 10px var(--glow-color);
+  cursor: pointer;
+}
 
-    .btn:hover {
-      background: white;
-      color: var(--main-color);
-      box-shadow: 0 0 15px var(--main-color);
-    }
+.btn:hover {
+  background: #333;
+  color: white;
+  box-shadow: 0 0 15px white;
+}
 
-    footer {
-      text-align: center;
-      padding: 2rem;
-      background: rgba(17, 17, 17, 0.85);
-      font-size: 0.9rem;
-      color: #aaa;
-      backdrop-filter: saturate(180%) blur(10px);
-      position: relative;
-      z-index: 1;
-      user-select: none;
-    }
+footer {
+  text-align: center;
+  padding: 2rem;
+  background: rgba(20, 20, 20, 0.95);
+  font-size: 0.9rem;
+  color: #aaa;
+  backdrop-filter: blur(6px);
+  position: relative;
+  z-index: 1;
+  user-select: none;
+}
   </style>
 </head>
 <body>
