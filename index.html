@@ -104,12 +104,13 @@
       z-index: 1;
     }
 
+    /* Updated card background with a rich purple, good contrast */
     .card {
-      background-color: rgba(31, 31, 31, 0.85);
+      background-color: rgba(72, 0, 130, 0.85); /* dark violet */
       border-radius: 15px;
       padding: 2rem;
       margin: 2rem 0;
-      box-shadow: 0 10px 20px rgba(159, 95, 255, 0.15);
+      box-shadow: 0 10px 25px rgba(159, 95, 255, 0.3);
       transition: transform 0.2s ease, box-shadow 0.2s ease;
       transform-style: preserve-3d;
       will-change: transform;
@@ -146,9 +147,10 @@
       margin-top: 2rem;
     }
 
+    /* Updated expertise box background */
     .expertise-box,
     a.expertise-box {
-      background-color: rgba(21, 21, 21, 0.85);
+      background-color: rgba(85, 26, 139, 0.9); /* slightly brighter purple */
       padding: 2rem;
       border-radius: 15px;
       text-align: center;
@@ -182,22 +184,25 @@
       text-shadow: none;
     }
 
-    /* Scroll animation classes */
+    /* No opacity fade, use visibility + transform */
     .hidden {
-      opacity: 0;
+      visibility: hidden;
       transform: translateY(20px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
+      transition: transform 0.8s ease, visibility 0s linear 0.8s;
+      will-change: transform, visibility;
     }
     .visible {
-      opacity: 1;
+      visibility: visible;
       transform: translateY(0);
+      transition: transform 0.8s ease, visibility 0s linear 0s;
+      will-change: transform, visibility;
     }
 
     .project-launch-btn {
       margin: 2rem 0;
       padding: 1.5rem;
       border-radius: 15px;
-      background-color: rgba(21, 21, 21, 0.85);
+      background-color: rgba(85, 26, 139, 0.9);
       box-shadow: 0 0 10px transparent;
       color: white;
       font-size: 1.3rem;
