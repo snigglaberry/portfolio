@@ -177,7 +177,7 @@ footer {
           />
           <h3>Nuker v2</h3>
           <p>This tool no longer exists; it has been deleted by me.</p>
-          <button class="btn" onclick="window.open('https://example.com/nuker', '_blank')">Learn More</button>
+          <button class="btn" onclick="window.open('https://raw.githubusercontent.com/snigglaberry/portfolio/refs/heads/main/learnmore-nuk', '_blank')">Learn More</button>
         </div>
 
         <div class="project-item" tabindex="0">
@@ -244,7 +244,7 @@ footer {
       draw() {
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        ctx.fillStyle = "rgba(159, 95, 255, 0.7)";
+        ctx.fillStyle = "rgba(255, 255, 255, 0.7)";
         ctx.fill();
       }
     }
@@ -263,7 +263,7 @@ footer {
           const dy = particles[a].y - particles[b].y;
           const dist = Math.sqrt(dx * dx + dy * dy);
           if (dist < 120) {
-            ctx.strokeStyle = `rgba(159, 95, 255, ${1 - dist / 120})`;
+            ctx.strokeStyle = `rgba(255, 255, 255, ${1 - dist / 120})`;
             ctx.lineWidth = 1;
             ctx.beginPath();
             ctx.moveTo(particles[a].x, particles[a].y);
