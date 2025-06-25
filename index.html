@@ -327,7 +327,7 @@ footer {
       draw() {
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        ctx.fillStyle = "rgba(159, 95, 255, 0.7)";
+        ctx.fillStyle = "rgba(255, 255, 255, 0.7)";
         ctx.fill();
       }
     }
@@ -346,7 +346,7 @@ footer {
           const dy = particles[a].y - particles[b].y;
           const dist = Math.sqrt(dx * dx + dy * dy);
           if (dist < 120) {
-            ctx.strokeStyle = `rgba(159, 95, 255, ${1 - dist / 120})`;
+            ctx.strokeStyle = `rgba(255, 255, 255, ${1 - dist / 120})`;
             ctx.lineWidth = 1;
             ctx.beginPath();
             ctx.moveTo(particles[a].x, particles[a].y);
