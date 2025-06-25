@@ -4,21 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Chez | Portfolio</title>
-  <!-- Favicon -->
-  <link rel="icon" href="https://raw.githubusercontent.com/snigglaberry/img/main/grey%20check" type="image/png" />
-
-  <!-- Open Graph Meta Tags -->
-  <meta property="og:title" content="chez" />
-  <meta property="og:description" content="chez's portfolio" />
-  <meta property="og:image" content="https://raw.githubusercontent.com/snigglaberry/portfolio/main/profilepic.png" />
-  <meta property="og:url" content="https://chez-dev.netlify.app" />
-  <meta property="og:type" content="website" />
-
-  <!-- Twitter Card Meta Tags -->
-  <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="chez" />
-  <meta name="twitter:description" content=" hez's portfolio" />
-  <meta name="twitter:image" content="https://raw.githubusercontent.com/snigglaberry/portfolio/main/profilepic.png" />
+<!-- Replace everything from <style> to </style> with this version -->
 <style>
   :root {
     --main-color: #9f5fff;
@@ -119,21 +105,19 @@
     z-index: 1;
   }
 
-  .card {
-    background-color: rgba(31, 31, 31, 0.85);
-    border-radius: 15px;
-    padding: 2rem;
-    margin: 2rem 0;
-    box-shadow: 0 0 20px rgba(159, 95, 255, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    backdrop-filter: saturate(180%) blur(10px);
-    color: white;
-  }
-
-  .card:hover {
-    transform: scale(1.02);
-    box-shadow: 0 0 25px var(--glow-color);
-  }
+.card {
+  background-color: rgba(31, 31, 31, 0.85);
+  border-radius: 15px;
+  padding: 2rem;
+  margin: 2rem 0;
+  box-shadow: 0 10px 20px rgba(159, 95, 255, 0.15); /* softer shadow */
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transform-style: preserve-3d;
+  will-change: transform;
+  perspective: 1000px;
+  color: white;
+  backdrop-filter: saturate(180%) blur(10px);
+}
 
   .btn {
     display: inline-block;
@@ -449,6 +433,25 @@
       window.location.href = 'projects.html';
     }, 300);
   }
+</script>
+<script>
+  document.querySelectorAll('.card').forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      // Increased divisor to lower the rotation effect (more subtle)
+      const rotateX = -(y - centerY) / 25; 
+      const rotateY = (x - centerX) / 25;
+      card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+    });
+
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
+    });
+  });
 </script>
 </body>
 </html>
