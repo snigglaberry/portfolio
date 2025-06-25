@@ -4,7 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Chez | Projects</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+  />
   <style>
     :root {
       --main-color: #9f5fff;
@@ -16,7 +19,8 @@
 
     #particle-canvas {
       position: fixed;
-      top: 0; left: 0;
+      top: 0;
+      left: 0;
       width: 100vw;
       height: 100vh;
       z-index: 0;
@@ -50,6 +54,7 @@
     nav h1 {
       font-size: 1.5rem;
       color: var(--main-color);
+      margin: 0;
     }
 
     nav a {
@@ -92,31 +97,32 @@
       gap: 2rem;
     }
 
-   .project-item {
-  background-color: rgba(21, 21, 21, 0.85);
-  padding: 1.5rem;
-  border-radius: 12px;
-  text-align: center;
-  color: white;
-  transition: box-shadow 0.3s ease, transform 0.2s ease;
-  backdrop-filter: saturate(180%) blur(10px);
+    .project-item {
+      background-color: rgba(21, 21, 21, 0.85);
+      padding: 1.5rem;
+      border-radius: 12px;
+      text-align: center;
+      color: white;
+      transition: box-shadow 0.3s ease, transform 0.2s ease;
+      backdrop-filter: saturate(180%) blur(10px);
+      transform-style: preserve-3d;
+      will-change: transform;
+      perspective: 1000px;
+      cursor: pointer;
+      user-select: none;
+    }
 
-  /* 3D effect properties */
-  transform-style: preserve-3d;
-  will-change: transform;
-  perspective: 1000px;
-  cursor: pointer;
-}
-
-.project-item:hover {
-  box-shadow: 0 0 15px var(--glow-color);
-  transform: scale(1.03); /* Keep the scale on hover */
-}
+    .project-item:hover {
+      box-shadow: 0 0 15px var(--glow-color);
+      transform: scale(1.03);
+    }
 
     .project-item img {
       max-width: 100%;
       border-radius: 10px;
       margin-bottom: 1rem;
+      user-select: none;
+      pointer-events: none;
     }
 
     footer {
@@ -125,6 +131,9 @@
       background: rgba(17, 17, 17, 0.85);
       color: #aaa;
       backdrop-filter: saturate(180%) blur(10px);
+      position: relative;
+      z-index: 1;
+      user-select: none;
     }
   </style>
 </head>
@@ -140,22 +149,37 @@
     <div class="card">
       <h2>Projects</h2>
       <div class="project-grid">
-        <div class="project-item">
-          <img src="https://raw.githubusercontent.com/snigglaberry/img/main/image.png" alt="Project 1" />
+        <div class="project-item" tabindex="0">
+          <img
+            src="https://raw.githubusercontent.com/snigglaberry/img/main/image.png"
+            alt="Nuker v2"
+          />
           <h3>Nuker v2</h3>
-          <p>this tool no longer exists,it has been deleted by me</p>
-         </div>
-        <div class="project-item">
-          <img src="https://cdn.discordapp.com/attachments/1367488014288293948/1382764065021231216/image.png?ex=685cd1a3&is=685b8023&hm=7cc846f298bc2a91bdb2176121417e3f953a3ece19a5b2105dff0df9a3b9c393&" alt="Project 2" />
+          <p>This tool no longer exists; it has been deleted by me.</p>
+        </div>
+
+        <div class="project-item" tabindex="0">
+          <img
+            src="https://cdn.discordapp.com/attachments/1367488014288293948/1382764065021231216/image.png"
+            alt="WebRep"
+          />
           <h3>WebRep</h3>
-          <p>advanced website cloner,can clone all paths,this means it can clone all extensions (the / after a domain) of a website,or most of them at least.</p> 
-        </div> 
-            <div class="project-item">
-          <img src="https://cdn.discordapp.com/attachments/1377272404618903713/1387450562143850626/How_to_get_Nuker-v2.png?ex=685d6387&is=685c1207&hm=0db74e3390d6ee31db92d07723b99794208b6ac845a1c309cee50bb8c1cd49bd&" alt="Project 2" />
+          <p>
+            Advanced website cloner. Can clone all paths/extensions of a website.
+          </p>
+        </div>
+
+        <div class="project-item" tabindex="0">
+          <img
+            src="https://cdn.discordapp.com/attachments/1377272404618903713/1387450562143850626/How_to_get_Nuker-v2.png"
+            alt="Byter Exploits"
+          />
           <h3>Byter Exploits</h3>
-          <p>im the owner of byter exploits,which was and is still a solo project,with a little help from others,we make roblox exploits (scripts).</p> 
-        </div> 
-        <!-- Add more project-item blocks as needed -->
+          <p>
+            Owner of Byter Exploits, a solo project with some help, focused on Roblox exploits (scripts).
+          </p>
+        </div>
+        <!-- Add more project items here -->
       </div>
     </div>
   </section>
@@ -165,6 +189,7 @@
   </footer>
 
   <script>
+    // Particle system setup
     const canvas = document.getElementById("particle-canvas");
     const ctx = canvas.getContext("2d");
 
@@ -199,7 +224,9 @@
     }
 
     const particles = [];
-    for (let i = 0; i < 100; i++) particles.push(new Particle());
+    for (let i = 0; i < 100; i++) {
+      particles.push(new Particle());
+    }
 
     function connectParticles() {
       for (let a = 0; a < particles.length; a++) {
@@ -221,35 +248,35 @@
 
     function animate() {
       ctx.clearRect(0, 0, width, height);
-      particles.forEach(p => { p.update(); p.draw(); });
+      particles.forEach((p) => {
+        p.update();
+        p.draw();
+      });
       connectParticles();
       requestAnimationFrame(animate);
     }
 
     animate();
+
+    // 3D hover tilt effect on project items
+    document.querySelectorAll('.project-item').forEach(card => {
+      card.addEventListener('mousemove', e => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+
+        const rotateX = -(y - centerY) / 15;
+        const rotateY = (x - centerX) / 15;
+
+        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.03)`;
+      });
+
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)';
+      });
+    });
   </script>
-<script>
-  document.querySelectorAll('.project-item').forEach(card => {
-    card.addEventListener('mousemove', e => {
-      const rect = card.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      const centerX = rect.width / 2;
-      const centerY = rect.height / 2;
-
-      // subtle rotation angles
-      const rotateX = -(y - centerY) / 15;
-      const rotateY = (x - centerX) / 15;
-
-      card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.03)`; 
-      // keep scale(1.03) on hover + rotate
-    });
-
-    card.addEventListener('mouseleave', () => {
-      card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)';
-    });
-  });
-</script>
-
 </body>
 </html>
