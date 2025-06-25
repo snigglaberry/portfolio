@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Chez | Portfolio</title>
+  <style>
+    :root {
+      --main-color: #9f5fff;
+      --bg-color: #0a0a0a;
+      --text-color: #ffffff;
+      --accent-color: #1f1f1f;
+      --glow-color: #c299ff;
+    }
+
+    /* Particle canvas full screen */
+    #particle-canvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 0;
+      background: linear-gradient(135deg, #2a004f, #4b0082);
+    }
+
+    /* Keep portfolio content above canvas */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      scroll-behavior: smooth;
+      color: var(--text-color);
+      background: transparent; /* canvas is bg now */
+      position: relative;
+      z-index: 1;
+      overflow-x: hidden;
+    }
+
+    nav {
+      background: rgba(17, 17, 17, 0.85);
+      padding: 1rem 10%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: saturate(180%) blur(10px);
+    }
+
+    nav h1 {
+      font-size: 1.5rem;
+      color: var(--main-color);
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: white;
+      font-weight: 500;
+      transition: 0.3s ease;
+    }
+
+    nav ul li a:hover {
+      color: var(--main-color);
+      text-shadow: 0 0 10px var(--main-color);
+    }
+
+    header {
+      text-align: center;
+      padding: 4rem 1rem 2rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .pfp {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      margin: 0 auto 1rem;
+      display: block;
+      border: 4px solid var(--main-color);
+    }
+
+    h1.name {
+      font-size: 3.2rem;
+      color: white;
+      margin: 0.5rem 0;
+    }
+
+    p.subtitle {
+      font-size: 1.4rem;
+      margin-top: 0.2rem;
+      color: #cccccc;
+    }
+
+    section {
+      padding: 3rem 10%;
+      transition: 0.3s ease;
+      position: relative;
+      z-index: 1;
+    }
+
+    .card {
+      background-color: rgba(31, 31, 31, 0.85);
+      border-radius: 15px;
+      padding: 2rem;
+      margin: 2rem 0;
+      box-shadow: 0 0 20px rgba(159, 95, 255, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      backdrop-filter: saturate(180%) blur(10px);
+      color: white;
+    }
+
+    .card:hover {
+      transform: scale(1.02);
+      box-shadow: 0 0 25px var(--glow-color);
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.8rem 2rem;
+      border: none;
+      border-radius: 30px;
+      background: var(--main-color);
+      color: white;
+      font-weight: bold;
+      text-decoration: none;
+      transition: 0.3s ease;
+      box-shadow: 0 0 10px var(--glow-color);
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background: white;
+      color: var(--main-color);
+      box-shadow: 0 0 15px var(--main-color);
+    }
+
+    .expertise-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .expertise-box,
+    a.expertise-box {
+      background-color: rgba(21, 21, 21, 0.85);
+      padding: 2rem;
+      border-radius: 15px;
+      text-align: center;
+      transition: 0.3s ease;
+      box-shadow: 0 0 10px transparent;
+      display: block;
+      color: inherit;
+      text-decoration: none;
+      cursor: pointer;
+      user-select: none;
+      backdrop-filter: saturate(180%) blur(10px);
+    }
+
+    .expertise-box:hover,
+    a.expertise-box:hover {
+      box-shadow: 0 0 15px var(--glow-color);
+    }
+
+    /* Remove icon glow and color change on hover */
+    .expertise-box i,
+    a.expertise-box i {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      display: block;
+      color: var(--text-color);
+      transition: none; /* removed transition for hover */
+    }
+
+    .expertise-box:hover i,
+    a.expertise-box:hover i {
+      color: var(--text-color); /* keep original color on hover */
+      text-shadow: none;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      background: rgba(17, 17, 17, 0.85);
+      font-size: 0.9rem;
+      color: #aaa;
+      backdrop-filter: saturate(180%) blur(10px);
+      position: relative;
+      z-index: 1;
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 1s forwards;
+    }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+  />
+</head>
+<body>
+  <!-- Particle background canvas -->
+  <canvas id="particle-canvas"></canvas>
+
+  <nav>
+    <h1>Chez</h1>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#expertise">Expertise</a></li>
+      <li><a href="#projects">Links</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <header>
+    <img
+      src="https://cdn.discordapp.com/avatars/1037389832332267560/632230453436618838912526e7f8033c.png?size=1024"
+      alt="Chez Profile Picture"
+      class="pfp"
+    />
+    <h1 class="name">Chez</h1>
+    <p class="subtitle">Exploit and web developer</p>
+  </header>
+
+  <section id="about" class="fade-in" style="animation-delay: 0.5s">
+    <div class="card">
+      <h2>About Me</h2>
+      <p>
+        Hey! I'm Chez,owner of byter,i mostly make exploits and release them to the public most of which are universal.
+      </p>
+    </div>
+  </section>
+
+  <section id="expertise" class="fade-in" style="animation-delay: 0.7s">
+    <div class="card">
+      <h2>Expertise</h2>
+      <div class="expertise-grid">
+        <div class="expertise-box">
+          <i class="fab fa-js"></i>
+          <h3>JavaScript</h3>
+        </div>
+        <div class="expertise-box">
+          <i class="fab fa-python"></i>
+          <h3>Python</h3>
+        </div>
+        <div class="expertise-box">
+          <i class="fas fa-cube"></i>
+          <h3>Luau (Roblox)</h3>
+        </div>
+        <div class="expertise-box">
+          <i class="fas fa-code"></i>
+          <h3>Web Development</h3>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects" class="fade-in" style="animation-delay: 0.9s">
+    <div class="card">
+      <h2>Links</h2>
+      <div class="expertise-grid">
+        <div
+          class="expertise-box"
+          onclick="window.open('https://byter.netlify.app', '_blank')"
+        >
+          <i class="fas fa-globe"></i>
+          <h3>Byter Website</h3>
+        </div>
+        <div
+          class="expertise-box"
+          onclick="window.open('https://discord.gg/WabT4sH8fS', '_blank')"
+        >
+          <i class="fab fa-discord"></i>
+          <h3>Join Discord</h3>
+        </div>
+        <div
+          class="expertise-box"
+          onclick="window.open('https://github.com/snigglaberry', '_blank')"
+        >
+          <i class="fab fa-github"></i>
+          <h3>My GitHub</h3>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="fade-in" style="animation-delay: 1.1s">
+    <div class="card">
+      <h2>Contact</h2>
+      <p>Want to collaborate or reach out?</p>
+      <p style="font-weight: bold; font-size: 1.2rem; user-select: text;">chez@example.com</p>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Chez. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Particle system
+
+    const canvas = document.getElementById("particle-canvas");
+    const ctx = canvas.getContext("2d");
+
+    let width, height;
+    function resize() {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    }
+    window.addEventListener("resize", resize);
+    resize();
+
+    class Particle {
+      constructor() {
+        this.x = Math.random() * width;
+        this.y = Math.random() * height;
+        this.radius = Math.random() * 1.5 + 0.5;
+        this.speedX = (Math.random() - 0.5) * 0.3;
+        this.speedY = (Math.random() - 0.5) * 0.3;
+      }
+
+      update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+
+        if (this.x < 0 || this.x > width) this.speedX *= -1;
+        if (this.y < 0 || this.y > height) this.speedY *= -1;
+      }
+
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.fillStyle = "rgba(159, 95, 255, 0.7)";
+        ctx.fill();
+      }
+    }
+
+    const particles = [];
+    const PARTICLE_COUNT = 100;
+
+    for (let i = 0; i < PARTICLE_COUNT; i++) {
+      particles.push(new Particle());
+    }
+
+    function connectParticles() {
+      for (let a = 0; a < particles.length; a++) {
+        for (let b = a + 1; b < particles.length; b++) {
+          const dx = particles[a].x - particles[b].x;
+          const dy = particles[a].y - particles[b].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 120) {
+            ctx.strokeStyle = `rgba(159, 95, 255, ${1 - dist / 120})`;
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(particles[a].x, particles[a].y);
+            ctx.lineTo(particles[b].x, particles[b].y);
+            ctx.stroke();
+          }
+        }
+      }
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, width, height);
+      particles.forEach((p) => {
+        p.update();
+        p.draw();
+      });
+      connectParticles();
+      requestAnimationFrame(animate);
+    }
+
+    animate();
+  </script>
+</body>
+</html>
