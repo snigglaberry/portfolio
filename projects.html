@@ -76,22 +76,22 @@
     }
 
     .card {
-      background-color: rgba(31, 31, 31, 0.85);
+      background-color: rgba(72, 0, 130, 0.85); /* dark violet */
       border-radius: 15px;
       padding: 2rem;
       margin: 2rem 0;
-      box-shadow: 0 10px 20px rgba(159, 95, 255, 0.15);
-      backdrop-filter: saturate(180%) blur(10px);
-      color: white;
+      box-shadow: 0 10px 25px rgba(159, 95, 255, 0.3);
       transition: transform 0.2s ease, box-shadow 0.2s ease;
       transform-style: preserve-3d;
       will-change: transform;
       perspective: 1000px;
+      color: white;
+      backdrop-filter: saturate(180%) blur(10px);
     }
 
     .card:hover {
       transform: scale(1.02);
-      box-shadow: 0 0 25px var(--glow-color);
+      box-shadow: 0 0 35px var(--glow-color);
     }
 
     .project-grid {
@@ -102,7 +102,7 @@
     }
 
     .project-item {
-      background-color: rgba(21, 21, 21, 0.85);
+      background-color: rgba(85, 26, 139, 0.9); /* slightly brighter purple */
       padding: 1.5rem;
       border-radius: 15px;
       text-align: center;
@@ -118,7 +118,7 @@
     }
 
     .project-item:hover {
-      box-shadow: 0 0 15px var(--glow-color);
+      box-shadow: 0 0 20px var(--glow-color);
       transform: scale(1.03);
     }
 
@@ -128,6 +128,27 @@
       margin-bottom: 1rem;
       user-select: none;
       pointer-events: none;
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.8rem 2rem;
+      border: none;
+      border-radius: 30px;
+      background: var(--main-color);
+      color: white;
+      font-weight: bold;
+      text-decoration: none;
+      transition: 0.3s ease;
+      box-shadow: 0 0 10px var(--glow-color);
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background: white;
+      color: var(--main-color);
+      box-shadow: 0 0 15px var(--main-color);
     }
 
     footer {
@@ -162,6 +183,7 @@
           />
           <h3>Nuker v2</h3>
           <p>This tool no longer exists; it has been deleted by me.</p>
+          <button class="btn" onclick="window.open('https://example.com/nuker', '_blank')">Learn More</button>
         </div>
 
         <div class="project-item" tabindex="0">
@@ -173,6 +195,7 @@
           <p>
             Advanced website cloner. Can clone all paths/extensions of a website.
           </p>
+          <button class="btn" onclick="window.open('https://example.com/webrep', '_blank')">Learn More</button>
         </div>
 
         <div class="project-item" tabindex="0">
@@ -184,8 +207,8 @@
           <p>
             Owner of Byter Exploits, a solo project with some help, focused on Roblox exploits (scripts).
           </p>
+          <button class="btn" onclick="window.open('https://example.com/byter', '_blank')">Learn More</button>
         </div>
-        <!-- Add more projects here -->
       </div>
     </div>
   </section>
@@ -195,7 +218,7 @@
   </footer>
 
   <script>
-    // Particle system setup
+    // Particle system
     const canvas = document.getElementById("particle-canvas");
     const ctx = canvas.getContext("2d");
 
@@ -215,12 +238,15 @@
         this.speedX = (Math.random() - 0.5) * 0.3;
         this.speedY = (Math.random() - 0.5) * 0.3;
       }
+
       update() {
         this.x += this.speedX;
         this.y += this.speedY;
+
         if (this.x < 0 || this.x > width) this.speedX *= -1;
         if (this.y < 0 || this.y > height) this.speedY *= -1;
       }
+
       draw() {
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
@@ -230,7 +256,9 @@
     }
 
     const particles = [];
-    for (let i = 0; i < 100; i++) {
+    const PARTICLE_COUNT = 100;
+
+    for (let i = 0; i < PARTICLE_COUNT; i++) {
       particles.push(new Particle());
     }
 
@@ -264,21 +292,18 @@
 
     animate();
 
-    // 3D hover tilt effect on project items
-    document.querySelectorAll('.project-item').forEach(card => {
+    // Card tilt effect on mousemove
+    document.querySelectorAll('.card').forEach(card => {
       card.addEventListener('mousemove', e => {
         const rect = card.getBoundingClientRect();
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
         const centerX = rect.width / 2;
         const centerY = rect.height / 2;
-
         const rotateX = -(y - centerY) / 15;
         const rotateY = (x - centerX) / 15;
-
-        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.03)`;
+        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
       });
-
       card.addEventListener('mouseleave', () => {
         card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)';
       });
