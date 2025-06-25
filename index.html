@@ -4,213 +4,246 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Chez | Portfolio</title>
-  <style>
-    :root {
-      --main-color: #9f5fff;
-      --bg-color: #0a0a0a;
-      --text-color: #ffffff;
-      --accent-color: #1f1f1f;
-      --glow-color: #c299ff;
-    }
+<!-- Replace everything from <style> to </style> with this version -->
+<style>
+  :root {
+    --main-color: #9f5fff;
+    --bg-color: #0a0a0a;
+    --text-color: #ffffff;
+    --accent-color: #1f1f1f;
+    --glow-color: #c299ff;
+  }
 
-    /* Particle canvas full screen */
-    #particle-canvas {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100vw;
-      height: 100vh;
-      z-index: 0;
-      background: linear-gradient(135deg, #2a004f, #4b0082);
-    }
+  #particle-canvas {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+    background: linear-gradient(135deg, #2a004f, #4b0082);
+  }
 
-    /* Keep portfolio content above canvas */
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      scroll-behavior: smooth;
-      color: var(--text-color);
-      background: transparent; /* canvas is bg now */
-      position: relative;
-      z-index: 1;
-      overflow-x: hidden;
-    }
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    scroll-behavior: smooth;
+    color: var(--text-color);
+    background: transparent;
+    position: relative;
+    z-index: 1;
+    overflow-x: hidden;
+  }
 
-    nav {
-      background: rgba(17, 17, 17, 0.85);
-      padding: 1rem 10%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      backdrop-filter: saturate(180%) blur(10px);
-    }
+  nav {
+    background: rgba(17, 17, 17, 0.85);
+    padding: 1rem 10%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    backdrop-filter: saturate(180%) blur(10px);
+  }
 
-    nav h1 {
-      font-size: 1.5rem;
-      color: var(--main-color);
-    }
+  nav h1 {
+    font-size: 1.5rem;
+    color: var(--main-color);
+  }
 
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 2rem;
-    }
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+  }
 
-    nav ul li a {
-      text-decoration: none;
-      color: white;
-      font-weight: 500;
-      transition: 0.3s ease;
-    }
+  nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+    transition: 0.3s ease;
+  }
 
-    nav ul li a:hover {
-      color: var(--main-color);
-      text-shadow: 0 0 10px var(--main-color);
-    }
+  nav ul li a:hover {
+    color: var(--main-color);
+    text-shadow: 0 0 10px var(--main-color);
+  }
 
-    header {
-      text-align: center;
-      padding: 4rem 1rem 2rem;
-      position: relative;
-      z-index: 1;
-    }
+  header {
+    text-align: center;
+    padding: 4rem 1rem 2rem;
+    position: relative;
+    z-index: 1;
+  }
 
-    .pfp {
-      width: 140px;
-      height: 140px;
-      border-radius: 50%;
-      margin: 0 auto 1rem;
-      display: block;
-      border: 4px solid var(--main-color);
-    }
+  .pfp {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    margin: 0 auto 1rem;
+    display: block;
+    border: 4px solid var(--main-color);
+  }
 
-    h1.name {
-      font-size: 3.2rem;
-      color: white;
-      margin: 0.5rem 0;
-    }
+  h1.name {
+    font-size: 3.2rem;
+    color: white;
+    margin: 0.5rem 0;
+  }
 
-    p.subtitle {
-      font-size: 1.4rem;
-      margin-top: 0.2rem;
-      color: #cccccc;
-    }
+  p.subtitle {
+    font-size: 1.4rem;
+    margin-top: 0.2rem;
+    color: #cccccc;
+  }
 
-    section {
-      padding: 3rem 10%;
-      transition: 0.3s ease;
-      position: relative;
-      z-index: 1;
-    }
+  section {
+    padding: 3rem 10%;
+    transition: 0.3s ease;
+    position: relative;
+    z-index: 1;
+  }
 
-    .card {
-      background-color: rgba(31, 31, 31, 0.85);
-      border-radius: 15px;
-      padding: 2rem;
-      margin: 2rem 0;
-      box-shadow: 0 0 20px rgba(159, 95, 255, 0.1);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      backdrop-filter: saturate(180%) blur(10px);
-      color: white;
-    }
+  .card {
+    background-color: rgba(31, 31, 31, 0.85);
+    border-radius: 15px;
+    padding: 2rem;
+    margin: 2rem 0;
+    box-shadow: 0 0 20px rgba(159, 95, 255, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    backdrop-filter: saturate(180%) blur(10px);
+    color: white;
+  }
 
-    .card:hover {
-      transform: scale(1.02);
-      box-shadow: 0 0 25px var(--glow-color);
-    }
+  .card:hover {
+    transform: scale(1.02);
+    box-shadow: 0 0 25px var(--glow-color);
+  }
 
-    .btn {
-      display: inline-block;
-      margin-top: 1rem;
-      padding: 0.8rem 2rem;
-      border: none;
-      border-radius: 30px;
-      background: var(--main-color);
-      color: white;
-      font-weight: bold;
-      text-decoration: none;
-      transition: 0.3s ease;
-      box-shadow: 0 0 10px var(--glow-color);
-      cursor: pointer;
-    }
+  .btn {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.8rem 2rem;
+    border: none;
+    border-radius: 30px;
+    background: var(--main-color);
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    transition: 0.3s ease;
+    box-shadow: 0 0 10px var(--glow-color);
+    cursor: pointer;
+  }
 
-    .btn:hover {
-      background: white;
-      color: var(--main-color);
-      box-shadow: 0 0 15px var(--main-color);
-    }
+  .btn:hover {
+    background: white;
+    color: var(--main-color);
+    box-shadow: 0 0 15px var(--main-color);
+  }
 
-    .expertise-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 2rem;
-      margin-top: 2rem;
-    }
+  .expertise-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+  }
 
-    .expertise-box,
-    a.expertise-box {
-      background-color: rgba(21, 21, 21, 0.85);
-      padding: 2rem;
-      border-radius: 15px;
-      text-align: center;
-      transition: 0.3s ease;
-      box-shadow: 0 0 10px transparent;
-      display: block;
-      color: inherit;
-      text-decoration: none;
-      cursor: pointer;
-      user-select: none;
-      backdrop-filter: saturate(180%) blur(10px);
-    }
+  .expertise-box,
+  a.expertise-box {
+    background-color: rgba(21, 21, 21, 0.85);
+    padding: 2rem;
+    border-radius: 15px;
+    text-align: center;
+    transition: 0.3s ease;
+    box-shadow: 0 0 10px transparent;
+    display: block;
+    color: inherit;
+    text-decoration: none;
+    cursor: pointer;
+    user-select: none;
+    backdrop-filter: saturate(180%) blur(10px);
+  }
 
-    .expertise-box:hover,
-    a.expertise-box:hover {
-      box-shadow: 0 0 15px var(--glow-color);
-    }
+  .expertise-box:hover,
+  a.expertise-box:hover {
+    box-shadow: 0 0 15px var(--glow-color);
+  }
 
-    /* Remove icon glow and color change on hover */
-    .expertise-box i,
-    a.expertise-box i {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-      display: block;
-      color: var(--text-color);
-      transition: none; /* removed transition for hover */
-    }
+  .expertise-box i,
+  a.expertise-box i {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    display: block;
+    color: var(--text-color);
+    transition: none;
+  }
 
-    .expertise-box:hover i,
-    a.expertise-box:hover i {
-      color: var(--text-color); /* keep original color on hover */
-      text-shadow: none;
-    }
+  .expertise-box:hover i,
+  a.expertise-box:hover i {
+    color: var(--text-color);
+    text-shadow: none;
+  }
 
-    footer {
-      text-align: center;
-      padding: 2rem;
-      background: rgba(17, 17, 17, 0.85);
-      font-size: 0.9rem;
-      color: #aaa;
-      backdrop-filter: saturate(180%) blur(10px);
-      position: relative;
-      z-index: 1;
-    }
+  .fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 1s forwards;
+  }
 
-    .fade-in {
-      opacity: 0;
-      transform: translateY(20px);
-      animation: fadeInUp 1s forwards;
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
     }
+  }
 
-    @keyframes fadeInUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-  </style>
+  .project-launch-btn {
+    margin: 2rem 0;
+    padding: 1.5rem;
+    border-radius: 15px;
+    background-color: rgba(21, 21, 21, 0.85);
+    box-shadow: 0 0 10px transparent;
+    color: white;
+    font-size: 1.3rem;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: calc(100% - 20%);
+    margin-left: 10%;
+    margin-right: 10%;
+    backdrop-filter: saturate(180%) blur(10px);
+    user-select: none;
+  }
+
+  .project-launch-btn:hover {
+    box-shadow: 0 0 15px var(--glow-color);
+    transform: scale(1.02);
+  }
+
+  .project-launch-btn i {
+    transition: transform 0.3s ease;
+  }
+
+  .project-launch-btn.clicked i {
+    transform: translateX(10px);
+  }
+
+  footer {
+    text-align: center;
+    padding: 2rem;
+    background: rgba(17, 17, 17, 0.85);
+    font-size: 0.9rem;
+    color: #aaa;
+    backdrop-filter: saturate(180%) blur(10px);
+    position: relative;
+    z-index: 1;
+  }
+</style>
   <link
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
@@ -273,7 +306,7 @@
     </div>
   </section>
 
-  <section id="projects" class="fade-in" style="animation-delay: 0.9s">
+<section id="projects" class="fade-in" style="animation-delay: 0.9s">
     <div class="card">
       <h2>Links</h2>
       <div class="expertise-grid">
@@ -306,9 +339,13 @@
     <div class="card">
       <h2>Contact</h2>
       <p>Want to collaborate or reach out?</p>
-      <p style="font-weight: bold; font-size: 1.2rem; user-select: text;">spam.chezs@gmail.com</p>
+      <p style="font-weight: bold; font-size: 1.2rem; user-select: text;">chez@example.com</p>
     </div>
   </section>
+<div class="project-launch-btn" onclick="animateArrowAndGo()">
+  <span>See Full Projects</span>
+  <i class="fas fa-arrow-right"></i>
+</div>
 
   <footer>
     <p>&copy; 2025 Chez. All rights reserved.</p>
@@ -390,5 +427,14 @@
 
     animate();
   </script>
+  <script>
+  function animateArrowAndGo() {
+    const btn = document.querySelector('.project-launch-btn');
+    btn.classList.add('clicked');
+    setTimeout(() => {
+      window.location.href = 'projects.html';
+    }, 300);
+  }
+</script>
 </body>
 </html>
