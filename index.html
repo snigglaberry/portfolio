@@ -220,6 +220,38 @@ footer {
   scrollbar-width: thin;
   scrollbar-color: #555 #121212;
 }
+/* Remove arrows by customizing scrollbar completely */
+::-webkit-scrollbar-button {
+  display: none;
+}
+/* Custom scrollbar (no arrows, smooth dark style) */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #121212;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #555;
+  border-radius: 10px;
+  border: 2px solid #121212;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #888;
+}
+
+::-webkit-scrollbar-button {
+  display: none;
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #555 #121212;
+}
 
   </style>
   <link
@@ -473,6 +505,26 @@ footer {
       }
     });
   });
+</script>
+  <script>
+  // Slow, buttery smooth scroll
+  let currentScroll = window.scrollY;
+  let targetScroll = window.scrollY;
+  const ease = 0.06; // smaller = slower
+
+  function smoothScroll() {
+    currentScroll += (targetScroll - currentScroll) * ease;
+    window.scrollTo(0, currentScroll);
+    requestAnimationFrame(smoothScroll);
+  }
+
+  document.addEventListener("wheel", (e) => {
+    e.preventDefault();
+    targetScroll += e.deltaY;
+    targetScroll = Math.max(0, Math.min(document.body.scrollHeight - window.innerHeight, targetScroll));
+  }, { passive: false });
+
+  requestAnimationFrame(smoothScroll);
 </script>
 </body>
 </html>
