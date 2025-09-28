@@ -1,4 +1,404 @@
-"site is under construction TEST TTSSDASDASD"
--chez
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chez</title>
 
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" />
 
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #1a0525, #0d0114);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      color: #ffffff;
+      transition: all 0.3s ease;
+    }
+
+    body.light-mode {
+      background: linear-gradient(135deg, #e0d6ff, #c9b8ff);
+      color: #333;
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      max-width: 500px;
+    }
+
+    .card {
+      background-color: rgba(25, 8, 45, 0.85);
+      backdrop-filter: blur(10px);
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      overflow: hidden;
+      width: 100%;
+      transition: all 0.3s ease;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .light-mode .card {
+      background-color: rgba(255, 255, 255, 0.9);
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+    }
+
+    .light-mode .card:hover {
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    }
+
+    .profile-card {
+      display: flex;
+      flex-direction: column;
+      padding: 30px;
+    }
+
+    .profile-pic {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin: 0 auto 20px;
+      border: 3px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .light-mode .profile-pic {
+      border: 3px solid rgba(0, 0, 0, 0.1);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .profile-pic img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      border-radius: 50%;
+    }
+
+    .profile-info {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .profile-info h1 {
+      font-size: 28px;
+      margin-bottom: 10px;
+      color: #e0d6ff;
+    }
+
+    .light-mode .profile-info h1 {
+      color: #6a0dad;
+    }
+
+    .profile-info .desc {
+      font-size: 18px;
+      margin-bottom: 20px;
+      opacity: 0.9;
+      color: #c9b8ff;
+    }
+
+    .light-mode .profile-info .desc {
+      color: #8a2be2;
+    }
+
+    .languages {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin-top: 15px;
+    }
+
+    .language {
+      background: rgba(60, 20, 100, 0.6);
+      border-radius: 8px;
+      padding: 8px 12px;
+      display: flex;
+      align-items: center;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      width: 50px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .light-mode .language {
+      background: rgba(200, 180, 255, 0.7);
+      border: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    .language:hover {
+      width: 150px;
+      background: rgba(80, 40, 130, 0.8);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .light-mode .language:hover {
+      background: rgba(180, 160, 240, 0.9);
+      border-color: rgba(0, 0, 0, 0.2);
+    }
+
+    .language i {
+      font-size: 24px;
+      margin-right: 10px;
+      min-width: 24px;
+      color: #d0bfff;
+    }
+
+    .light-mode .language i {
+      color: #6a0dad;
+    }
+
+    .language span {
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      color: #e6ddff;
+      font-weight: 500;
+    }
+
+    .light-mode .language span {
+      color: #4b0082;
+    }
+
+    .language:hover span {
+      opacity: 1;
+    }
+
+    .links-section {
+      margin-top: 25px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .light-mode .links-section {
+      border-top: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    .links-section h3 {
+      font-size: 22px;
+      margin-bottom: 15px;
+      text-align: center;
+      color: #e0d6ff;
+    }
+
+    .light-mode .links-section h3 {
+      color: #6a0dad;
+    }
+
+    .profile-links {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .profile-link {
+      background: rgba(50, 15, 85, 0.7);
+      border: 2px solid rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      color: white;
+    }
+
+    .light-mode .profile-link {
+      background: rgba(200, 180, 255, 0.7);
+      border: 2px solid rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      color: #333;
+    }
+
+    .profile-link:hover {
+      background: rgba(70, 30, 110, 0.9);
+      transform: scale(1.03);
+      border-color: rgba(255, 255, 255, 0.2);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+    }
+
+    .light-mode .profile-link:hover {
+      background: rgba(180, 160, 240, 0.9);
+      border-color: rgba(0, 0, 0, 0.2);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .profile-link i {
+      font-size: 22px;
+      margin-right: 15px;
+      width: 24px;
+      text-align: center;
+      color: #d0bfff;
+    }
+
+    .light-mode .profile-link i {
+      color: #6a0dad;
+    }
+
+    .theme-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: rgba(25, 8, 45, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      z-index: 100;
+    }
+
+    .light-mode .theme-toggle {
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    .theme-toggle:hover {
+      transform: rotate(15deg);
+    }
+
+    .theme-toggle i {
+      font-size: 22px;
+      color: #d0bfff;
+    }
+
+    .light-mode .theme-toggle i {
+      color: #6a0dad;
+    }
+
+    @media (max-width: 768px) {
+      .profile-pic {
+        width: 120px;
+        height: 120px;
+      }
+
+      .theme-toggle {
+        top: 10px;
+        right: 10px;
+        width: 40px;
+        height: 40px;
+      }
+
+      .theme-toggle i {
+        font-size: 18px;
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .card {
+      animation: fadeIn 0.8s ease forwards;
+    }
+  </style>
+</head>
+<body>
+  <div class="theme-toggle" title="Toggle Theme">
+    <i class="fas fa-moon"></i>
+  </div>
+
+  <div class="container">
+    <div class="card profile-card">
+      <div class="profile-pic">
+        <img src="https://media1.tenor.com/m/uy_OBkkROWIAAAAd/yummy-tongue.gif" alt="Profile Picture" />
+      </div>
+      <div class="profile-info">
+        <h1>Chez</h1>
+        <div class="desc">67 mustard😂✌🎉</div>
+        <div class="languages">
+          <div class="language">
+            <i class="fab fa-python"></i>
+            <span>Python</span>
+          </div>
+          <div class="language">
+            <i class="fas fa-code"></i>
+            <span>Lua</span>
+          </div>
+          <div class="language">
+            <i class="fab fa-js-square"></i>
+            <span>JavaScript</span>
+          </div>
+          <div class="language">
+            <i class="fas fa-globe"></i>
+            <span>Web Development</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="links-section">
+        <h3>Quick Links</h3>
+        <div class="profile-links">
+          <a href="https://github.com/snigglaberry" class="profile-link" target="_blank">
+            <i class="fab fa-github"></i>
+            GitHub
+          </a>
+          <a href="https://discord.gg/WabT4sH8fS" class="profile-link" target="_blank">
+            <i class="fab fa-discord"></i>
+            Discord
+          </a>
+          <a href="https://scriptblox.com/u/byter" class="profile-link" target="_blank">
+            <i class="fas fa-code"></i>
+            ScriptBlox
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const themeToggle = document.querySelector('.theme-toggle');
+    const body = document.body;
+    const icon = themeToggle.querySelector('i');
+
+    themeToggle.addEventListener('click', function () {
+      body.classList.toggle('light-mode');
+
+      if (body.classList.contains('light-mode')) {
+        icon.classList.remove('fa-moon');
+        icon.classList.add('fa-sun');
+      } else {
+        icon.classList.remove('fa-sun');
+        icon.classList.add('fa-moon');
+      }
+    });
+  </script>
+</body>
+</html>
