@@ -1,10 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Chez</title>
+  <title>Chez - Portfolio</title>
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" />
 
@@ -56,16 +55,18 @@
 
     .container {
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
       width: 100%;
       max-width: 500px;
+      gap: 20px;
     }
 
     .card {
       background-color: rgba(25, 8, 45, 0.85);
       backdrop-filter: blur(10px);
-      border-radius: 15px;
+      border-radius: 20px;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
       overflow: hidden;
       width: 100%;
@@ -88,10 +89,68 @@
       box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
     }
 
-    .profile-card {
+    /* Floating Tabs Styling */
+    .floating-tabs {
+      display: flex;
+      gap: 15px;
+      z-index: 100;
+      position: relative;
+    }
+
+    .tab {
+      padding: 14px 30px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 600;
+      font-size: 16px;
+      color: #c9b8ff;
+      background: rgba(40, 15, 70, 0.95);
+      border-radius: 50px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(10px);
+      min-width: 120px;
+    }
+
+    .light-mode .tab {
+      color: #8a2be2;
+      background: rgba(230, 220, 255, 0.95);
+      border: 1px solid rgba(0, 0, 0, 0.15);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    .tab.active {
+      color: #ffffff;
+      background: rgba(90, 50, 150, 0.95);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      transform: translateY(-5px);
+    }
+
+    .light-mode .tab.active {
+      color: #ffffff;
+      background: rgba(140, 100, 220, 0.95);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .tab:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .light-mode .tab:hover {
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .tab-content {
+      display: none;
+      padding: 40px 30px 30px;
+    }
+
+    .tab-content.active {
       display: flex;
       flex-direction: column;
-      padding: 30px;
     }
 
     .profile-pic {
@@ -212,12 +271,7 @@
 
     .links-section {
       margin-top: 25px;
-      padding-top: 20px;
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
-    }
-
-    .light-mode .links-section {
-      border-top: 1px solid rgba(0, 0, 0, 0.1);
+      /* Removed the border-top property */
     }
 
     .links-section h3 {
@@ -335,6 +389,16 @@
       .theme-toggle i {
         font-size: 18px;
       }
+      
+      .floating-tabs {
+        gap: 10px;
+      }
+      
+      .tab {
+        padding: 12px 20px;
+        font-size: 14px;
+        min-width: 100px;
+      }
     }
 
     @keyframes fadeIn {
@@ -345,6 +409,11 @@
     .card {
       animation: fadeIn 0.8s ease forwards;
     }
+    
+    .floating-tabs {
+      animation: fadeIn 0.8s ease 0.2s forwards;
+      opacity: 0;
+    }
   </style>
 </head>
 <body>
@@ -353,27 +422,38 @@
   </div>
 
   <div class="container">
-    <div class="card profile-card">
-      <div class="profile-pic">
-        <img src="https://c.tenor.com/FLFJVej1xkMAAAAC/tenor.gif" />
-      </div>
-      <div class="profile-info">
-        <h1>Chez</h1>
-        <div class="desc">67 mustard😂✌🎉</div>
-        <div class="languages">
-          <div class="language"><i class="fab fa-python"></i><span>Python</span></div>
-          <div class="language"><i class="fas fa-code"></i><span>Lua</span></div>
-          <div class="language"><i class="fab fa-js-square"></i><span>JavaScript</span></div>
-          <div class="language"><i class="fas fa-globe"></i><span>Web Development</span></div>
+    <div class="floating-tabs">
+      <div class="tab active" data-tab="main">Main</div>
+      <div class="tab" data-tab="links">Links</div>
+    </div>
+
+    <div class="card">
+      <div class="tab-content active" id="main-tab">
+        <div class="profile-pic">
+          <img src="https://c.tenor.com/FLFJVej1xkMAAAAC/tenor.gif" />
+        </div>
+        <div class="profile-info">
+          <h1>Chez</h1>
+          <div class="desc">67 mustard😂✌🎉</div>
+          <div class="languages">
+            <div class="language"><i class="fab fa-python"></i><span>Python</span></div>
+            <div class="language"><i class="fas fa-code"></i><span>Lua</span></div>
+            <div class="language"><i class="fab fa-js-square"></i><span>JavaScript</span></div>
+            <div class="language"><i class="fas fa-globe"></i><span>Web Development</span></div>
+          </div>
         </div>
       </div>
 
-      <div class="links-section">
-        <h3>Links and shi</h3>
-        <div class="profile-links">
-          <a href="https://github.com/snigglaberry" class="profile-link" target="_blank"><i class="fab fa-github"></i>GitHub</a>
-          <a href="https://discord.gg/WabT4sH8fS" class="profile-link" target="_blank"><i class="fab fa-discord"></i>Discord</a>
-          <a href="https://scriptblox.com/u/byter" class="profile-link" target="_blank"><i class="fas fa-code"></i>ScriptBlox</a>
+      <div class="tab-content" id="links-tab">
+        <div class="links-section">
+          <h3>Links and shi</h3>
+          <div class="profile-links">
+            <a href="https://github.com/snigglaberry" class="profile-link" target="_blank"><i class="fab fa-github"></i>GitHub</a>
+            <a href="https://discord.gg/WabT4sH8fS" class="profile-link" target="_blank"><i class="fab fa-discord"></i>Discord</a>
+            <a href="https://scriptblox.com/u/byter" class="profile-link" target="_blank"><i class="fas fa-code"></i>ScriptBlox</a>
+            <a href="https://www.roblox.com/users/2503571358/profile" class="profile-link" target="_blank"><i class="fas fa-gamepad"></i>Roblox</a>
+            <a href="https://www.youtube.com/watch?v=aLjM-BpyeEY" class="profile-link" target="_blank"><i class="fab fa-youtube"></i>YouTube</a>
+          </div>
         </div>
       </div>
     </div>
@@ -383,6 +463,25 @@
     const themeToggle = document.querySelector('.theme-toggle');
     const body = document.body;
     const icon = themeToggle.querySelector('i');
+    
+    // Tab functionality
+    const tabs = document.querySelectorAll('.tab');
+    const tabContents = document.querySelectorAll('.tab-content');
+    
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        // Remove active class from all tabs and contents
+        tabs.forEach(t => t.classList.remove('active'));
+        tabContents.forEach(content => content.classList.remove('active'));
+        
+        // Add active class to clicked tab
+        tab.classList.add('active');
+        
+        // Show corresponding content
+        const tabId = tab.getAttribute('data-tab');
+        document.getElementById(`${tabId}-tab`).classList.add('active');
+      });
+    });
 
     themeToggle.addEventListener('click', function () {
       body.classList.toggle('light-mode');
@@ -397,4 +496,3 @@
   </script>
 </body>
 </html>
-
