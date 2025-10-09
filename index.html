@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,6 +17,7 @@
     }
 
     body {
+      position: relative;
       background: linear-gradient(135deg, #1a0525, #0d0114);
       min-height: 100vh;
       display: flex;
@@ -24,6 +26,27 @@
       padding: 20px;
       color: #ffffff;
       transition: all 0.3s ease;
+      overflow: hidden;
+    }
+
+    /* Blurred GIF background */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('https://media1.tenor.com/m/Euw3s1S20xgAAAAC/kevin-mccallister-home-alone.gif') center/cover no-repeat;
+      filter: blur(15px) brightness(0.5);
+      z-index: -1;
+      animation: bgLoop 30s linear infinite;
+    }
+
+    @keyframes bgLoop {
+      0% { transform: scale(1) translate(0,0); }
+      50% { transform: scale(1.05) translate(-10px,-10px); }
+      100% { transform: scale(1) translate(0,0); }
     }
 
     body.light-mode {
@@ -315,14 +338,8 @@
     }
 
     @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     .card {
@@ -344,40 +361,19 @@
         <h1>Chez</h1>
         <div class="desc">67 mustard😂✌🎉</div>
         <div class="languages">
-          <div class="language">
-            <i class="fab fa-python"></i>
-            <span>Python</span>
-          </div>
-          <div class="language">
-            <i class="fas fa-code"></i>
-            <span>Lua</span>
-          </div>
-          <div class="language">
-            <i class="fab fa-js-square"></i>
-            <span>JavaScript</span>
-          </div>
-          <div class="language">
-            <i class="fas fa-globe"></i>
-            <span>Web Development</span>
-          </div>
+          <div class="language"><i class="fab fa-python"></i><span>Python</span></div>
+          <div class="language"><i class="fas fa-code"></i><span>Lua</span></div>
+          <div class="language"><i class="fab fa-js-square"></i><span>JavaScript</span></div>
+          <div class="language"><i class="fas fa-globe"></i><span>Web Development</span></div>
         </div>
       </div>
 
       <div class="links-section">
         <h3>Quick Links</h3>
         <div class="profile-links">
-          <a href="https://github.com/snigglaberry" class="profile-link" target="_blank">
-            <i class="fab fa-github"></i>
-            GitHub
-          </a>
-          <a href="https://discord.gg/WabT4sH8fS" class="profile-link" target="_blank">
-            <i class="fab fa-discord"></i>
-            Discord
-          </a>
-          <a href="https://scriptblox.com/u/byter" class="profile-link" target="_blank">
-            <i class="fas fa-code"></i>
-            ScriptBlox
-          </a>
+          <a href="https://github.com/snigglaberry" class="profile-link" target="_blank"><i class="fab fa-github"></i>GitHub</a>
+          <a href="https://discord.gg/WabT4sH8fS" class="profile-link" target="_blank"><i class="fab fa-discord"></i>Discord</a>
+          <a href="https://scriptblox.com/u/byter" class="profile-link" target="_blank"><i class="fas fa-code"></i>ScriptBlox</a>
         </div>
       </div>
     </div>
@@ -390,7 +386,6 @@
 
     themeToggle.addEventListener('click', function () {
       body.classList.toggle('light-mode');
-
       if (body.classList.contains('light-mode')) {
         icon.classList.remove('fa-moon');
         icon.classList.add('fa-sun');
@@ -402,5 +397,3 @@
   </script>
 </body>
 </html>
-
-
