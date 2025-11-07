@@ -24,11 +24,10 @@
       align-items: center;
       padding: 20px;
       color: #ffffff;
-      transition: all 0.3s ease;
       overflow: hidden;
+      transition: all 0.3s ease;
     }
 
-    /* Blurred GIF background */
     body::before {
       content: "";
       position: fixed;
@@ -41,16 +40,36 @@
       z-index: -1;
       animation: bgLoop 30s linear infinite;
     }
-
+/* half the code for ts is ai (im not a larp i promise) */
     @keyframes bgLoop {
       0% { transform: scale(1) translate(0,0); }
       50% { transform: scale(1.05) translate(-10px,-10px); }
       100% { transform: scale(1) translate(0,0); }
     }
 
-    body.light-mode {
-      background: linear-gradient(135deg, #e0d6ff, #c9b8ff);
-      color: #333;
+    /* Enter screen overlay */
+    #enter-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: black;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.5rem;
+      font-weight: bold;
+      font-style: italic;
+      z-index: 9999;
+      transition: opacity 1s ease;
+      cursor: pointer;
+    }
+
+    #enter-screen.hidden {
+      opacity: 0;
+      pointer-events: none;
     }
 
     .container {
@@ -72,29 +91,16 @@
       width: 100%;
       transition: all 0.3s ease;
       border: 1px solid rgba(255, 255, 255, 0.08);
+      animation: fadeIn 0.8s ease forwards;
     }
 
-    .light-mode .card {
-      background-color: rgba(255, 255, 255, 0.9);
-      border: 1px solid rgba(0, 0, 0, 0.1);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    }
-
-    .card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
-    }
-
-    .light-mode .card:hover {
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-    }
-
-    /* Floating Tabs Styling */
     .floating-tabs {
       display: flex;
       gap: 15px;
       z-index: 100;
       position: relative;
+      animation: fadeIn 0.8s ease 0.2s forwards;
+      opacity: 0;
     }
 
     .tab {
@@ -113,34 +119,11 @@
       min-width: 120px;
     }
 
-    .light-mode .tab {
-      color: #8a2be2;
-      background: rgba(230, 220, 255, 0.95);
-      border: 1px solid rgba(0, 0, 0, 0.15);
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-    }
-
     .tab.active {
       color: #ffffff;
       background: rgba(90, 50, 150, 0.95);
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
       transform: translateY(-5px);
-    }
-
-    .light-mode .tab.active {
-      color: #ffffff;
-      background: rgba(140, 100, 220, 0.95);
-      border: 1px solid rgba(255, 255, 255, 0.3);
-    }
-
-    .tab:hover {
-      transform: translateY(-3px);
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-    }
-
-    .light-mode .tab:hover {
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     }
 
     .tab-content {
@@ -161,14 +144,6 @@
       margin: 0 auto 20px;
       border: 3px solid rgba(255, 255, 255, 0.1);
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .light-mode .profile-pic {
-      border: 3px solid rgba(0, 0, 0, 0.1);
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     }
 
     .profile-pic img {
@@ -190,19 +165,11 @@
       color: #e0d6ff;
     }
 
-    .light-mode .profile-info h1 {
-      color: #6a0dad;
-    }
-
     .profile-info .desc {
       font-size: 18px;
       margin-bottom: 20px;
       opacity: 0.9;
       color: #c9b8ff;
-    }
-
-    .light-mode .profile-info .desc {
-      color: #8a2be2;
     }
 
     .languages {
@@ -226,20 +193,10 @@
       border: 1px solid rgba(255, 255, 255, 0.1);
     }
 
-    .light-mode .language {
-      background: rgba(200, 180, 255, 0.7);
-      border: 1px solid rgba(0, 0, 0, 0.1);
-    }
-
     .language:hover {
       width: 150px;
       background: rgba(80, 40, 130, 0.8);
       border-color: rgba(255, 255, 255, 0.2);
-    }
-
-    .light-mode .language:hover {
-      background: rgba(180, 160, 240, 0.9);
-      border-color: rgba(0, 0, 0, 0.2);
     }
 
     .language i {
@@ -247,10 +204,6 @@
       margin-right: 10px;
       min-width: 24px;
       color: #d0bfff;
-    }
-
-    .light-mode .language i {
-      color: #6a0dad;
     }
 
     .language span {
@@ -261,17 +214,12 @@
       font-weight: 500;
     }
 
-    .light-mode .language span {
-      color: #4b0082;
-    }
-
     .language:hover span {
       opacity: 1;
     }
 
     .links-section {
       margin-top: 25px;
-      /* Removed the border-top property */
     }
 
     .links-section h3 {
@@ -279,10 +227,6 @@
       margin-bottom: 15px;
       text-align: center;
       color: #e0d6ff;
-    }
-
-    .light-mode .links-section h3 {
-      color: #6a0dad;
     }
 
     .profile-links {
@@ -306,24 +250,11 @@
       color: white;
     }
 
-    .light-mode .profile-link {
-      background: rgba(200, 180, 255, 0.7);
-      border: 2px solid rgba(0, 0, 0, 0.1);
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-      color: #333;
-    }
-
     .profile-link:hover {
       background: rgba(70, 30, 110, 0.9);
       transform: scale(1.03);
       border-color: rgba(255, 255, 255, 0.2);
       box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
-    }
-
-    .light-mode .profile-link:hover {
-      background: rgba(180, 160, 240, 0.9);
-      border-color: rgba(0, 0, 0, 0.2);
-      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
     }
 
     .profile-link i {
@@ -332,10 +263,6 @@
       width: 24px;
       text-align: center;
       color: #d0bfff;
-    }
-
-    .light-mode .profile-link i {
-      color: #6a0dad;
     }
 
     .theme-toggle {
@@ -355,11 +282,6 @@
       z-index: 100;
     }
 
-    .light-mode .theme-toggle {
-      background: rgba(255, 255, 255, 0.9);
-      border: 1px solid rgba(0, 0, 0, 0.1);
-    }
-
     .theme-toggle:hover {
       transform: rotate(15deg);
     }
@@ -369,54 +291,15 @@
       color: #d0bfff;
     }
 
-    .light-mode .theme-toggle i {
-      color: #6a0dad;
-    }
-
-    @media (max-width: 768px) {
-      .profile-pic {
-        width: 120px;
-        height: 120px;
-      }
-
-      .theme-toggle {
-        top: 10px;
-        right: 10px;
-        width: 40px;
-        height: 40px;
-      }
-
-      .theme-toggle i {
-        font-size: 18px;
-      }
-      
-      .floating-tabs {
-        gap: 10px;
-      }
-      
-      .tab {
-        padding: 12px 20px;
-        font-size: 14px;
-        min-width: 100px;
-      }
-    }
-
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
-
-    .card {
-      animation: fadeIn 0.8s ease forwards;
-    }
-    
-    .floating-tabs {
-      animation: fadeIn 0.8s ease 0.2s forwards;
-      opacity: 0;
-    }
   </style>
 </head>
 <body>
+  <div id="enter-screen">click to enter</div>
+
   <div class="theme-toggle" title="Toggle Theme">
     <i class="fas fa-moon"></i>
   </div>
@@ -460,54 +343,39 @@
   </div>
 
   <script>
-    const themeToggle = document.querySelector('.theme-toggle');
+    const enterScreen = document.getElementById("enter-screen");
+    const themeToggle = document.querySelector(".theme-toggle");
     const body = document.body;
-    const icon = themeToggle.querySelector('i');
-    
-    // Tab functionality
-    const tabs = document.querySelectorAll('.tab');
-    const tabContents = document.querySelectorAll('.tab-content');
-    
+    const icon = themeToggle.querySelector("i");
+    const audio = new Audio("https://raw.githubusercontent.com/snigglaberry/portfolio/main/dreadedsadmusicsoemocover.ogg");
+    audio.loop = true;
+    audio.volume = 0.4;
+
+    enterScreen.addEventListener("click", () => {
+      enterScreen.classList.add("hidden");
+      setTimeout(() => enterScreen.remove(), 1000);
+      audio.play().catch(err => console.warn("Audio play blocked:", err));
+    });
+
+    const tabs = document.querySelectorAll(".tab");
+    const tabContents = document.querySelectorAll(".tab-content");
     tabs.forEach(tab => {
-      tab.addEventListener('click', () => {
-        // Remove active class from all tabs and contents
-        tabs.forEach(t => t.classList.remove('active'));
-        tabContents.forEach(content => content.classList.remove('active'));
-        
-        // Add active class to clicked tab
-        tab.classList.add('active');
-        
-        // Show corresponding content
-        const tabId = tab.getAttribute('data-tab');
-        document.getElementById(`${tabId}-tab`).classList.add('active');
+      tab.addEventListener("click", () => {
+        tabs.forEach(t => t.classList.remove("active"));
+        tabContents.forEach(c => c.classList.remove("active"));
+        tab.classList.add("active");
+        document.getElementById(`${tab.dataset.tab}-tab`).classList.add("active");
       });
     });
 
-    themeToggle.addEventListener('click', function () {
-      body.classList.toggle('light-mode');
-      if (body.classList.contains('light-mode')) {
-        icon.classList.remove('fa-moon');
-        icon.classList.add('fa-sun');
+    themeToggle.addEventListener("click", function () {
+      body.classList.toggle("light-mode");
+      if (body.classList.contains("light-mode")) {
+        icon.classList.replace("fa-moon", "fa-sun");
       } else {
-        icon.classList.remove('fa-sun');
-        icon.classList.add('fa-moon');
+        icon.classList.replace("fa-sun", "fa-moon");
       }
     });
-const audio = new Audio("https://raw.githubusercontent.com/snigglaberry/portfolio/main/dreadedsadmusicsoemocover.ogg");
-audio.loop = true;
-audio.volume = 0.4;
-
-function startMusic() {
-  audio.play().catch(err => console.warn("Audio play blocked:", err));
-  document.removeEventListener("mousemove", startMusic);
-}
-
-document.addEventListener("mousemove", startMusic);
-
-
   </script>
 </body>
 </html>
-
-
-
