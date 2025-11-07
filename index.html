@@ -496,11 +496,18 @@
 const audio = new Audio("https://raw.githubusercontent.com/snigglaberry/portfolio/main/dreadedsadmusicsoemocover.ogg");
 audio.loop = true;
 audio.volume = 0.4;
-audio.play();
+
+function startMusic() {
+  audio.play().catch(err => console.warn("Audio play blocked:", err));
+  document.removeEventListener("mousemove", startMusic);
+}
+
+document.addEventListener("mousemove", startMusic);
 
 
   </script>
 </body>
 </html>
+
 
 
