@@ -39,23 +39,17 @@ display=swap" rel="stylesheet">
     .wrapper {
         display: inline-flex;
         align-items: center;
-        justify-content: center;
+        gap: 20px;
     }
 
-    .static {
-        margin-right: 20px;
-    }
-
-    .peak-container {
-        width: 320px; /* prevents layout shift */
-        display: flex;
-        justify-content: center;
+    .peak-box {
+        width: 320px;          /* lock width so layout doesn't shift */
+        text-align: center;
     }
 
     .peak {
         font-weight: 900;
         display: inline-block;
-        text-align: center;
         width: 100%;
     }
 </style>
@@ -63,8 +57,9 @@ display=swap" rel="stylesheet">
 <body>
 
 <div class="wrapper">
-    <span class="static">ts so</span>
-    <div class="peak-container">
+    <span>ts</span>
+    <span>so</span>
+    <div class="peak-box">
         <span class="peak" id="peakText">peak</span>
     </div>
 </div>
