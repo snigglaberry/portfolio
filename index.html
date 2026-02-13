@@ -36,16 +36,34 @@ display=swap" rel="stylesheet">
         font-family: Arial, sans-serif;
     }
 
+    .wrapper {
+        display: flex;
+        align-items: center;
+    }
+
+    .static {
+        margin-right: 20px;
+    }
+
+    .peak-container {
+        width: 320px;           /* fixed width prevents shifting */
+        text-align: left;
+    }
+
     .peak {
         font-weight: 900;
-        transition: font-family 0.1s linear;
+        display: inline-block;
+        width: 100%;
     }
 </style>
 </head>
 <body>
 
-<div>
-    ts so <span class="peak" id="peakText">peak</span>
+<div class="wrapper">
+    <div class="static">ts so</div>
+    <div class="peak-container">
+        <span class="peak" id="peakText">peak</span>
+    </div>
 </div>
 
 <script>
