@@ -37,29 +37,37 @@ display=swap" rel="stylesheet">
     }
 
     .wrapper {
-        display: inline-flex;
+        display: flex;
         align-items: center;
-        gap: 20px;
     }
 
-    .peak-box {
-        width: 320px;          /* lock width so layout doesn't shift */
-        text-align: center;
-    }
-
-    .peak {
-        font-weight: 900;
+    .peak-container {
+        position: relative;
         display: inline-block;
-        width: 100%;
+    }
+
+    /* Invisible placeholder keeps layout stable */
+    .peak-placeholder {
+        font-weight: 900;
+        visibility: hidden;
+    }
+
+    /* Animated text sits on top */
+    .peak {
+        position: absolute;
+        left: 0;
+        top: 0;
+        font-weight: 900;
+        white-space: nowrap;
     }
 </style>
 </head>
 <body>
 
 <div class="wrapper">
-    <span>ts</span>
-    <span>so</span>
-    <div class="peak-box">
+    <span>ts so&nbsp;</span>
+    <div class="peak-container">
+        <span class="peak-placeholder">peak</span>
         <span class="peak" id="peakText">peak</span>
     </div>
 </div>
