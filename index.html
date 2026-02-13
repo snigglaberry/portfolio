@@ -1,307 +1,82 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Chez | Projects</title>
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-  />
-  <style>
-    :root {
-  --main-color: #ffffff;
-  --bg-color: #121212;
-  --text-color: #ffffff;
-  --accent-color: #1a1a1a;
-  --glow-color: #555555;
-}
+<meta charset="UTF-8">
+<title>ts so peak</title>
 
-#particle-canvas {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: 0;
-  background: #121212;
-}
+<link href="https://fonts.googleapis.com/css2?
+family=Courier+Prime&
+family=Press+Start+2P&
+family=Bebas+Neue&
+family=Orbitron&
+family=Permanent+Marker&
+family=Anton&
+family=Oswald&
+family=Playfair+Display&
+family=Montserrat&
+family=Righteous&
+family=Luckiest+Guy&
+family=Abril+Fatface&
+family=Creepster&
+family=DM+Serif+Display&
+family=Exo+2&
+family=Archivo+Black&
+display=swap" rel="stylesheet">
 
-body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  scroll-behavior: smooth;
-  color: var(--text-color);
-  background: transparent;
-  position: relative;
-  z-index: 1;
-  overflow-x: hidden;
-}
+<style>
+    body {
+        background: #000;
+        color: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        font-size: 4rem;
+        font-family: Arial, sans-serif;
+    }
 
-nav {
-  background: rgba(20, 20, 20, 0.95);
-  padding: 1rem 10%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  backdrop-filter: blur(10px);
-}
-
-nav h1 {
-  font-size: 1.5rem;
-  color: var(--main-color);
-  margin: 0;
-}
-
-nav a {
-  color: white;
-  text-decoration: none;
-  font-weight: 500;
-  transition: 0.3s ease;
-  font-size: 1rem;
-}
-
-nav a:hover {
-  color: var(--glow-color);
-}
-
-section {
-  padding: 3rem 10%;
-  position: relative;
-  z-index: 1;
-}
-
-.card {
-  background-color: #1a1a1a;
-  border-radius: 15px;
-  padding: 2rem;
-  margin: 2rem 0;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-  color: white;
-  backdrop-filter: blur(6px);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  transform-style: preserve-3d;
-}
-
-.card:hover {
-  transform: scale(1.02);
-  box-shadow: 0 0 35px var(--glow-color);
-}
-
-.project-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2rem;
-  margin-top: 1.5rem;
-}
-
-.project-item {
-  background-color: #222;
-  padding: 1.5rem;
-  border-radius: 15px;
-  text-align: center;
-  color: white;
-  box-shadow: 0 0 10px transparent;
-  transition: box-shadow 0.3s ease, transform 0.3s ease;
-  backdrop-filter: blur(6px);
-  cursor: pointer;
-  user-select: none;
-}
-
-.project-item:hover {
-  box-shadow: 0 0 20px var(--glow-color);
-  transform: scale(1.03);
-}
-
-.project-item img {
-  max-width: 100%;
-  border-radius: 12px;
-  margin-bottom: 1rem;
-  user-select: none;
-  pointer-events: none;
-}
-
-.btn {
-  display: inline-block;
-  margin-top: 1rem;
-  padding: 0.8rem 2rem;
-  border: none;
-  border-radius: 30px;
-  background: var(--main-color);
-  color: black;
-  font-weight: bold;
-  text-decoration: none;
-  transition: 0.3s ease;
-  box-shadow: 0 0 10px var(--glow-color);
-  cursor: pointer;
-}
-
-.btn:hover {
-  background: #333;
-  color: white;
-  box-shadow: 0 0 15px white;
-}
-
-footer {
-  text-align: center;
-  padding: 2rem;
-  background: rgba(20, 20, 20, 0.95);
-  font-size: 0.9rem;
-  color: #aaa;
-  backdrop-filter: blur(6px);
-  position: relative;
-  z-index: 1;
-  user-select: none;
-}
-  </style>
+    .peak {
+        font-weight: 900;
+        transition: font-family 0.1s linear;
+    }
+</style>
 </head>
 <body>
-  <canvas id="particle-canvas"></canvas>
 
-  <nav>
-    <h1>Chez</h1>
-    <a href="index.html">Back to Portfolio</a>
-  </nav>
+<div>
+    ts so <span class="peak" id="peakText">peak</span>
+</div>
 
-  <section>
-    <div class="card">
-      <h2>Projects</h2>
-      <div class="project-grid">
-        <div class="project-item" tabindex="0">
-          <img
-            src="https://raw.githubusercontent.com/snigglaberry/img/main/image.png"
-            alt="Nuker v2"
-          />
-          <h3>Nuker v2</h3>
-          <p>This tool no longer exists; it has been deleted by me.</p>
-          <button class="btn" onclick="window.open('https://raw.githubusercontent.com/snigglaberry/portfolio/refs/heads/main/learnmore-nuk', '_blank')">Learn More</button>
-        </div>
+<script>
+    const fonts = [
+        "Courier Prime",
+        "Press Start 2P",
+        "Bebas Neue",
+        "Orbitron",
+        "Permanent Marker",
+        "Anton",
+        "Oswald",
+        "Playfair Display",
+        "Montserrat",
+        "Righteous",
+        "Luckiest Guy",
+        "Abril Fatface",
+        "Creepster",
+        "DM Serif Display",
+        "Exo 2",
+        "Archivo Black"
+    ];
 
-        <div class="project-item" tabindex="0">
-          <img
-            src="https://cdn.discordapp.com/attachments/1367488014288293948/1382764065021231216/image.png?ex=685d7a63&is=685c28e3&hm=45e5a27c53247672be69c6e038626e24fa77ec37d3be158f18465e038ea7e2ab&"
-            alt="WebRep"
-          />
-          <h3>WebRep</h3>
-          <p>
-            Advanced website cloner. Can clone all paths/extensions of a website.
-          </p>
-          <button class="btn" onclick="window.open('https://byter.netlify.app/#tools', '_blank')">Visit</button>
-        </div>
+    const peak = document.getElementById("peakText");
 
-        <div class="project-item" tabindex="0">
-          <img
-            src="https://cdn.discordapp.com/attachments/1377272404618903713/1387450562143850626/How_to_get_Nuker-v2.png?ex=685d6387&is=685c1207&hm=0db74e3390d6ee31db92d07723b99794208b6ac845a1c309cee50bb8c1cd49bd&"
-            alt="Byter Exploits"
-          />
-          <h3>Byter Exploits</h3>
-          <p>
-            Owner of Byter Exploits, a solo project with some help, focused on Roblox exploits (scripts).
-          </p>
-          <button class="btn" onclick="window.open('https://byter.netlify.app', '_blank')">Vist</button>
-        </div>
-      </div>
-    </div>
-  </section>
+    let index = 0;
 
-  <footer>
-    <p>&copy; 2025 Chez. All rights reserved.</p>
-  </footer>
+    setInterval(() => {
+        peak.style.fontFamily = fonts[index];
+        index = (index + 1) % fonts.length;
+    }, 140);
+</script>
 
-  <script>
-    // Particle system
-    const canvas = document.getElementById("particle-canvas");
-    const ctx = canvas.getContext("2d");
-
-    let width, height;
-    function resize() {
-      width = canvas.width = window.innerWidth;
-      height = canvas.height = window.innerHeight;
-    }
-    window.addEventListener("resize", resize);
-    resize();
-
-    class Particle {
-      constructor() {
-        this.x = Math.random() * width;
-        this.y = Math.random() * height;
-        this.radius = Math.random() * 1.5 + 0.5;
-        this.speedX = (Math.random() - 0.5) * 0.3;
-        this.speedY = (Math.random() - 0.5) * 0.3;
-      }
-
-      update() {
-        this.x += this.speedX;
-        this.y += this.speedY;
-
-        if (this.x < 0 || this.x > width) this.speedX *= -1;
-        if (this.y < 0 || this.y > height) this.speedY *= -1;
-      }
-
-      draw() {
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        ctx.fillStyle = "rgba(255, 255, 255, 0.7)";
-        ctx.fill();
-      }
-    }
-
-    const particles = [];
-    const PARTICLE_COUNT = 100;
-
-    for (let i = 0; i < PARTICLE_COUNT; i++) {
-      particles.push(new Particle());
-    }
-
-    function connectParticles() {
-      for (let a = 0; a < particles.length; a++) {
-        for (let b = a + 1; b < particles.length; b++) {
-          const dx = particles[a].x - particles[b].x;
-          const dy = particles[a].y - particles[b].y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 120) {
-            ctx.strokeStyle = `rgba(255, 255, 255, ${1 - dist / 120})`;
-            ctx.lineWidth = 1;
-            ctx.beginPath();
-            ctx.moveTo(particles[a].x, particles[a].y);
-            ctx.lineTo(particles[b].x, particles[b].y);
-            ctx.stroke();
-          }
-        }
-      }
-    }
-
-    function animate() {
-      ctx.clearRect(0, 0, width, height);
-      particles.forEach((p) => {
-        p.update();
-        p.draw();
-      });
-      connectParticles();
-      requestAnimationFrame(animate);
-    }
-
-    animate();
-
-    // Card tilt effect on mousemove
-    document.querySelectorAll('.card').forEach(card => {
-      card.addEventListener('mousemove', e => {
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-        const rotateX = -(y - centerY) / 30;
-        const rotateY = (x - centerX) / 30;
-        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
-      });
-      card.addEventListener('mouseleave', () => {
-        card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)';
-      });
-    });
-  </script>
 </body>
 </html>
