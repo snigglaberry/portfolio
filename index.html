@@ -27,18 +27,19 @@ display=swap" rel="stylesheet">
     body {
         background: #000;
         color: #fff;
+        height: 100vh;
+        margin: 0;
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 100vh;
-        margin: 0;
         font-size: 4rem;
         font-family: Arial, sans-serif;
     }
 
     .wrapper {
-        display: flex;
+        display: inline-flex;
         align-items: center;
+        justify-content: center;
     }
 
     .static {
@@ -46,13 +47,15 @@ display=swap" rel="stylesheet">
     }
 
     .peak-container {
-        width: 320px;           /* fixed width prevents shifting */
-        text-align: left;
+        width: 320px; /* prevents layout shift */
+        display: flex;
+        justify-content: center;
     }
 
     .peak {
         font-weight: 900;
         display: inline-block;
+        text-align: center;
         width: 100%;
     }
 </style>
@@ -60,7 +63,7 @@ display=swap" rel="stylesheet">
 <body>
 
 <div class="wrapper">
-    <div class="static">ts so</div>
+    <span class="static">ts so</span>
     <div class="peak-container">
         <span class="peak" id="peakText">peak</span>
     </div>
@@ -87,7 +90,6 @@ display=swap" rel="stylesheet">
     ];
 
     const peak = document.getElementById("peakText");
-
     let index = 0;
 
     setInterval(() => {
